@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Header from "@/components/header/Header";
 import { WorkspaceModal } from "@/components/modals/WorkspaceModal";
-import EditWorkspaceModal from "@/components/modals/editWorkspaceModal";
+import { EditWorkspaceModal } from "@/components/modals/editWorkspaceModal";
 import { SideNav } from "@/components/sidebar/SideNav";
 import { ToastContainer } from "react-toastify";
 import { IoAdd } from "react-icons/io5";
