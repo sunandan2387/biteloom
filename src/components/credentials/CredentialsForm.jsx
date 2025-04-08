@@ -72,7 +72,7 @@ const CredentialsForm = ({ props }) => {
           Please enter your Azure credentials
         </h1>
         <p className="text-gray-600 dark:text-white italic text-center">
-          &quot;Your credentials are encrypted and never stored.&quot;
+          &quot;Your credentials are encrypted.&quot;
         </p>
       </div>
       <div className="border"></div>

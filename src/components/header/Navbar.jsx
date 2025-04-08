@@ -15,7 +15,7 @@ import Link from "next/link";
 
 export const Nav = ({ items }) => {
   return (
-      <div className=" flex items-center justify-center gap-4 font-semibold w-full z-50">
+      <div className=" flex items-center justify-center h-[60px] gap-4 font-semibold w-full z-50">
         {items.map((item) => ( 
           <div key={item.title} className="mx-2">
             <Link href={item.link} legacyBehavior passHref>

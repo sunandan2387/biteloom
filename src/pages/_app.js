@@ -3,7 +3,7 @@ import Header from "@/components/header/Header";
 import "@/styles/globals.css";
 import { Inter, Roboto } from "next/font/google";
 import { ThemeProvider } from "@/components/styles/ThemeProvider";
-import { SideNav } from "@/components/sidebar/SideNav2";
+// import { SideNav } from "@/components/sidebar/SideNav2";
 import { Footer } from "@/components/footer/Footer";
 import { AuthProvider } from "@/context/SessionProvider";
 import { ToastContainer } from "react-toastify";
@@ -25,14 +25,14 @@ export default function App({ Component, pageProps }) {
       <div className={`${roboto.variable} ${inter.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           <ToastContainer />
           <Header />
           <div className="flex w-full pt-12 bg-black">
-            <SideNav />
+            {/* <SideNav /> */}
             <Component {...pageProps} />
           </div>
           <Footer />

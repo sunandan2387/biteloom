@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Swal from 'sweetalert2'
 import Link from "next/link";
 
-const search = ({ id }) => {
+const search = ({ id,searchTerm,setSearchTerm,bearer }) => {
   const router = useRouter();
 
   const [isDeleting,setIsDeleting]=useState(false)
@@ -25,7 +25,10 @@ const search = ({ id }) => {
         axios.delete('https://sage.techfinna.com/techfinna/curd-workspace', {
           data: {
             workspace_id: id
-          }
+          },
+          headers: {
+            Authorization: `Bearer ${bearer}`,
+          },
         })
             .then(response => {
               if (response.data.success === true) {
@@ -43,8 +46,8 @@ const search = ({ id }) => {
   };
 
   return (
-    <div className="w-full mx-auto flex gap-2 justify-start items-start border-b-2 border-gray-600 py-1.5 pb-4 my-4">
-      <form className="min-w-[300px] ">
+    <div className="w-full flex flex-col justify-center md:justify-between md:flex-row gap-5 md:gap-2 items-start border-b-2 border-gray-600 py-1.5 pb-4 my-4">
+      <form className="w-full md:w-[300px]">
         <label
           htmlhtmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -71,17 +74,15 @@ const search = ({ id }) => {
           </div>
           <input
             type="search"
+            value={searchTerm}
             id="default-search"
-            className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Filter compute ..."
+            onChange={(e)=>setSearchTerm(e.target.value)}
+            className="block w-full md:w-[300px] p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search name"
           />
         </div>
       </form>
-      <select className="block w-fit p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option value="option1">Sort</option>
-        <option value="option2">Sort 2</option>
-      </select>
-      <div className="ml-auto flex gap-5">
+      <div className=" w-full justify-between md:justify-end flex gap-5">
         <Link
           href={`${id}/new-compute`}
           className=" w-fit text-white flex items-center gap-2 bg-[#473f7b] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
