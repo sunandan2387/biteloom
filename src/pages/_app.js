@@ -23,20 +23,13 @@ export default function App({ Component, pageProps }) {
   return (
     <AuthProvider>
       <div className={`${roboto.variable} ${inter.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
           <ToastContainer />
           <Header />
-          <div className="flex w-full pt-12 bg-black">
+          <div className="flex w-full pt-12 bg-white">
             {/* <SideNav /> */}
             <Component {...pageProps} />
           </div>
           <Footer />
-        </ThemeProvider>
       </div>
     </AuthProvider>
   );

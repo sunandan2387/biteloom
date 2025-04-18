@@ -145,7 +145,7 @@ export default function Signup() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="bg-primary text-black w-full py-2 rounded-md"
+                      className="bg-primary text-white w-full py-2 rounded-md"
                     >
                       {loading ? "Signing Up..." : "Sign Up"}
                     </button>
@@ -168,7 +168,7 @@ export default function Signup() {
                     <button
                       type="button"
                       onClick={sendVerification}
-                      className="bg-primary text-black w-full py-2 rounded-md"
+                      className="bg-primary text-white w-full py-2 rounded-md"
                     >
                       {loading ? "Verifying..." : "Verify"}
                     </button>

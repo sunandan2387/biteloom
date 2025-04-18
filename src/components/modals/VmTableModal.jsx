@@ -29,7 +29,7 @@ export default function VmTableModal(props) {
         setSortConfig({ key, direction });
     };
 
-    const filteredData = props.vmList && props.vmList.filter((row) => {
+    const filteredData = props.vmList?.filter((row) => {
         const rowValues = [
             row.name,
             row.vCPUs,
@@ -67,25 +67,27 @@ export default function VmTableModal(props) {
         return '↕';
     };
 
-
     return (
-        <Modal size='7xl' className="border bg-opacity-80" show={props.openVmModal}>
-            <div onClick={() => props.setOpenVmModal(false)} className="absolute cursor-pointer duration-300 hover:scale-110 hover:rotate-90 right-3 top-3">
-                <RxCross1 className="dark:text-white" size={22} />
+        <Modal size='7xl' className="border" show={props.openVmModal}>
+            <div
+                onClick={() => props.setOpenVmModal(false)}
+                className="absolute cursor-pointer duration-300 hover:scale-110 hover:rotate-90 right-3 top-3"
+            >
+                <RxCross1 className="text-black" size={22} />
             </div>
             <Modal.Body className="pt-10">
-                <div className="p-5 text-white">
+                <div className="p-5 text-black">
                     <div className="mb-[10px] w-fit md:w-[400px]">
                         <input
                             type="text"
                             placeholder="Global Search"
                             value={globalSearch}
                             onChange={(e) => setGlobalSearch(e.target.value)}
-                            className="w-full p-2 bg-[#333] text-white border border-[#555]"
+                            className="w-full p-2 bg-white text-black border border-gray-300"
                         />
                     </div>
                     <div className='overflow-y-auto max-h-[600px]'>
-                        <table className=" w-full mb-[10px] bg-[#2b2b2b] text-white">
+                        <table className="w-full mb-[10px] bg-white text-black border border-gray-300">
                             <thead>
                                 <tr>
                                     <TableHeader label="VM Size" onClick={() => handleSort('name')} sortIcon={sortIcon('name')} />
@@ -97,45 +99,39 @@ export default function VmTableModal(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {!sortedData || sortedData.length <=0 ?
-                                    <span>loading...</span>
-                                    :
+                                {!sortedData || sortedData.length <= 0 ? (
+                                    <tr><td colSpan="6" className="text-center p-4">Loading...</td></tr>
+                                ) : (
                                     sortedData.map((row, index) => (
                                         <tr
                                             key={index}
                                             onClick={() => handleRowClick(row)}
-                                            className={`border border-[#444] cursor-pointer ${selectedRow?.id === row.id ? 'bg-[#444]' : 'bg-[#2b2b2b]'
+                                            className={`border border-gray-300 cursor-pointer ${selectedRow === row ? 'bg-blue-100 font-semibold' : 'bg-white'
                                                 }`}
                                         >
                                             <td className="p-2">{row.name}</td>
-
                                             <td className="p-2">{row.vCPUs}</td>
-
                                             <td className="p-2">{row.MemoryGB}</td>
-
                                             <td className="p-2">{row.MaxDataDiskCount}</td>
-
                                             <td className="p-2">{row.UncachedDiskIOPS}</td>
-
                                             <td className="p-2">{row.PremiumIO ? 'Supported' : 'Not supported'}</td>
                                         </tr>
-                                    ))}
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </div>
 
-                    {/* Footer Section */}
-                    <div className="flex justify-between items-center">
-                        <div>Rows: {sortedData && sortedData.length}</div>
+                    <div className="flex justify-between items-center mt-4">
+                        <div>Rows: {sortedData?.length ?? 0}</div>
                         <button
                             onClick={handleSubmit}
-                            className="py-[10px] px-[20px] bg-[#444] text-white border-0 cursor-pointer"
+                            className="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded"
                         >
                             Submit
                         </button>
                     </div>
                 </div>
-
             </Modal.Body>
         </Modal>
     );
@@ -146,9 +142,9 @@ function TableHeader({ label, onClick, sortIcon }) {
         <th
             onClick={onClick}
             style={{
-                border: '1px solid #444',
+                border: '1px solid #ccc',
                 padding: '8px',
-                backgroundColor: '#333',
+                backgroundColor: '#f0f0f0',
                 cursor: onClick ? 'pointer' : 'default',
                 textAlign: 'left',
             }}

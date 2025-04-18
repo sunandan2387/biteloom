@@ -53,8 +53,8 @@ const Header = () => {
       <header
         className={
           user
-            ? "flex justify-between items-center bg-[#0d131f] text-white px-3 py-2.5 fixed w-full z-50"
-            : "flex justify-between items-center bg-[#121212] text-white px-3 py-2.5 fixed w-full z-50"
+            ? "flex justify-between items-center bg-[#0d131f] text-white px-3 fixed w-full z-50"
+            : "flex justify-between items-center bg-[#121212] text-white px-3 fixed w-full z-50"
         }
       >
         {/* Logo */}
@@ -81,7 +81,7 @@ const Header = () => {
           </div>
 
           {/* Theme Switcher */}
-          <div ref={dropdownRef} className="relative">
+          {/* <div ref={dropdownRef} className="relative">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="focus:outline-none"
@@ -119,7 +119,7 @@ const Header = () => {
                 </button>
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* Desktop User Menu */}
           {!user ? (
@@ -128,7 +128,7 @@ const Header = () => {
                 href="/auth/login"
                 className="inline-flex items-center bg-[#1e293b] px-6 py-2 rounded-md text-white"
               >
-                Try ByteLoom
+                Login
               </Link>
             </nav>
           ) : (
